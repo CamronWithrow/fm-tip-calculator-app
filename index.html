@@ -7,30 +7,37 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <title>Frontend Mentor | Tip calculator app</title>
   <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
 </head>
 
 <body>
-
-  Bill
-
-  Select Tip %
-  5%
-  10%
-  15%
-  25%
-  50%
-  Custom
-
-  Number of People
-
-  Tip Amount
-  / person
-
-  Total
-  / person
-
-  Reset
-
+  <img src="images/logo.svg" alt="">
+  <main>
+    <section>
+      <h1>Bill</h1>
+      <input type="text" class="total-cost">
+      <h2>Select Tip %</h2>
+      <ul>
+        <li><button data-selected="false" class="tip-button" id="tip5">5%</button></li>
+        <li><button data-selected="false" class="tip-button" id="tip10">10%</button></li>
+        <li><button data-selected="false" class="tip-button" id="tip15">15%</button></li>
+        <li><button data-selected="false" class="tip-button" id="tip25">25%</button></li>
+        <li><button data-selected="false" class="tip-button" id="tip50">50%</button></li>
+        <li><input type="text" data-selected="false" class="custom-tip"></li>
+      </ul>
+      <h2>Number of People</h2>
+      <input type="text" class="party-size">
+    </section>
+    <section>
+      <h2>Tip Amount</h2>
+      <p>/ person</p>
+      <div class="cost" id="tip-per-person">$0.00</div>
+      <h2>Total</h2>
+      <p>/ person</p>
+      <div class="cost" id="total-per-person">$0.00</div>
+      <button class="reset">Reset</button>
+    </section>
+  </main>
   <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="https://camronwithrow.github.io" target="_blank">Camron Withrow</a>.
