@@ -1,12 +1,21 @@
 //construct array of tip buttons
-const tipPercentage = [5, 10, 15, 25, 50];
+const tipPercentage = [5, 10, 15, 25, 50, "custom"];
 const tipButtons = tipPercentage.map((percentage) => {
-  let id = `tip${percentage}`;
-  return document.querySelector(`#${id}`);
+  if (percentage === "custom") {
+    // currently doesn't update at the right time...
+    // need to click on the input field again after the button is selected and the field contains a value
+    var id = ".custom-tip";
+  } else {
+    var id = `#tip${percentage}`;
+  }
+  return document.querySelector(`${id}`);
 });
 
 // directly update the entries
 function updateCosts(percentage) {
+  if (percentage === "custom") {
+    percentage = document.querySelector(".custom-tip").value;
+  }
   const billTotal = document.querySelector(".bill").value;
   const partySize = document.querySelector(".party-size").value;
   // we calculate in terms of cents (not dollars) since pennies are atomic
