@@ -71,3 +71,16 @@ inputElements.forEach((element) => {
 radioButtons.forEach((button) => {
   button.addEventListener("click", attemptUpdate);
 });
+
+function resetAll() {
+  resetResults();
+  inputElements.forEach((element) => {
+    element.value = "";
+  });
+  radioButtons.forEach((button) => {
+    button.checked = false;
+  });
+  document.querySelector("#tip15").checked = true;
+}
+
+document.querySelector(".reset-button").addEventListener("click", resetAll);
