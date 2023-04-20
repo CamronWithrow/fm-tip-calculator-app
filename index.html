@@ -17,50 +17,62 @@
   <body>
     <img src="images/logo.svg" alt="" />
     <main>
-      <section>
-        <h1>Bill</h1>
-        <input type="text" class="bill" />
-        <h2>Select Tip %</h2>
-        <ul>
-          <li>
-            <input type="radio" name="tip" class="tip-button" id="tip5" />
-            <label for="tip5">5%</label>
-          </li>
-          <li>
-            <input type="radio" name="tip" class="tip-button" id="tip10" />
-            <label for="tip10">10%</label>
-          </li>
-          <li>
-            <input type="radio" name="tip" class="tip-button" id="tip15" />
-            <label for="tip15">15%</label>
-          </li>
-          <li>
-            <input type="radio" name="tip" class="tip-button" id="tip25" />
-            <label for="tip25">25%</label>
-          </li>
-          <li>
-            <input type="radio" name="tip" class="tip-button" id="tip50" />
-            <label for="tip50">50%</label>
-          </li>
-          <li>
-            <input type="radio" name="tip" class="tip-button" id="custom" />
-            <label for="custom">
-              <input type="text" class="custom-tip" />
-            </label>
-          </li>
-        </ul>
-        <h2>Number of People</h2>
-        <input type="text" class="party-size" />
-      </section>
-      <section>
-        <h2>Tip Amount</h2>
-        <p>/ person</p>
-        <div class="cost" id="tip-per-person">$0.00</div>
-        <h2>Total</h2>
-        <p>/ person</p>
-        <div class="cost" id="total-per-person">$0.00</div>
-        <button class="reset">Reset</button>
-      </section>
+      <div class="input-elements">
+        <section>
+          <label for="bill">Bill</label>
+          <input type="text" name="bill" id="bill" class="text-input" />
+        </section>
+        <section>
+          <label for="tip-percentage">Select Tip %</label>
+          <ul>
+            <li>
+              <input type="radio" name="tip" id="tip5" class="tip-button" />
+              <label for="tip5">5%</label>
+            </li>
+            <li>
+              <input type="radio" name="tip" id="tip10" class="tip-button" />
+              <label for="tip10">10%</label>
+            </li>
+            <li>
+              <input
+                type="radio"
+                name="tip"
+                id="tip15"
+                class="tip-button"
+                checked
+              />
+              <label for="tip15">15%</label>
+            </li>
+            <li>
+              <input type="radio" name="tip" id="tip25" class="tip-button" />
+              <label for="tip25">25%</label>
+            </li>
+            <li>
+              <input type="radio" name="tip" id="tip50" class="tip-button" />
+              <label for="tip50">50%</label>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <label for="party-size">Number of People</label>
+          <input
+            type="text"
+            name="party-size"
+            id="party-size"
+            class="text-input"
+          />
+        </section>
+      </div>
+      <div class="results">
+        <section class="display-result">
+          <div class="label"><strong>Tip Amount</strong></div>
+          <div class="result" id="tip-per-person">$0.00</div>
+        </section>
+        <section class="display-result">
+          <div class="label"><strong>Total</strong></div>
+          <div class="result" id="total-per-person">$0.00</div>
+        </section>
+      </div>
     </main>
     <footer class="attribution">
       Challenge by
