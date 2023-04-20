@@ -1,4 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.choose-tip {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 50em) {
+  .choose-tip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .attribution {
+  position: absolute;
+  bottom: 1rem;
   font-size: 11px;
   text-align: center;
 }
