@@ -1,31 +1,20 @@
-const tip = document.querySelector("#tip-per-person");
-const cost = document.querySelector("#total-per-person");
-
-const tipPercentage = [5, 10, 15, 25, 50];
-var tipButtons = tipPercentage.map((percentage) => {
-  var id = `#tip${percentage}`;
-  return document.querySelector(`${id}`);
-});
-
+const fixedTips = [5, 10, 15, 25, 50];
 let percentageMap = new Map();
-for (let i = 0; i < tipButtons.length; i++) {
-  percentageMap.set(tipButtons[i], tipPercentage[i]);
-}
-
-// custom is treated seperately from the other tip buttons...
-const customTip = document.querySelector("#custom");
-tipButtons = tipButtons.concat([customTip]);
+fixedTips.forEach((percentage) => {
+  var id = `#tip${percentage}`;
+  percentageMap.set(document.querySelector(`${id}`), percentage);
+});
 
 const bill = document.querySelector("#bill");
 const partySize = document.querySelector("#party-size");
 const customPercentage = document.querySelector("#custom-tip");
-const radioButtons = document.querySelectorAll(".tip-button");
 const inputElements = [bill, partySize, customPercentage];
+const radioButtons = Array.from(document.querySelectorAll(".tip-button"));
+// should only validate customPercentage if customTip is checked
+const customTip = document.querySelector("#custom");
 
-function resetResults() {
-  tip.textContent = `$0.00`;
-  cost.textContent = `$0.00`;
-}
+const tip = document.querySelector("#tip-per-person");
+const cost = document.querySelector("#total-per-person");
 
 // directly update the entries
 function updateCosts(percentage) {
@@ -54,9 +43,14 @@ function inputValidates() {
   return costRegex.test(bill.value) && naturalNumberRegex.test(partySize.value);
 }
 
+function resetResults() {
+  tip.textContent = `$0.00`;
+  cost.textContent = `$0.00`;
+}
+
 function attemptUpdate() {
   if (inputValidates()) {
-    let activeButton = tipButtons.find((button) => button.checked);
+    let activeButton = radioButtons.find((button) => button.checked);
     let p = percentageMap.get(activeButton);
     updateCosts(p);
   } else {
