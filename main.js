@@ -31,28 +31,20 @@ const partySize = document.querySelector("#party-size");
 const radioButtons = document.querySelectorAll(".tip-button");
 const inputElements = [bill, partySize];
 
-function isValidEntry(htmlInput) {
-  return htmlInput.value != "";
-}
-
 function inputValidates() {
   // check each input field against the appropriate regular expression
+  let costRegex = /^(0|[1-9]\d*)(.\d{2})?$/;
+  let naturalNumberRegex = /^[1-9]\d*$/;
+  return costRegex.test(bill.value) && naturalNumberRegex.test(partySize.value);
 }
 
 function attemptUpdate() {
-  // We hope for the following:
-  // if (inputValidates()) {
-  //   let { p, _ } = tipButtons.find(({ _, button }) => button.checked);
-  //   updateCosts(p);
-  // }
-
-  for (const input of inputElements) {
-    if (!isValidEntry(input)) {
-      return resetResults();
-    }
+  if (inputValidates()) {
+    let { p, _ } = tipButtons.find(({ _, button }) => button.checked);
+    updateCosts(p);
+  } else {
+    resetResults();
   }
-  let { p, _ } = tipButtons.find(({ _, button }) => button.checked);
-  updateCosts(p);
 }
 
 inputElements.forEach((element) => {
