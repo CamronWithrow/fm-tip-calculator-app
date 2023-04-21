@@ -16,6 +16,7 @@
   --clr-white: hsl(0, 0%, 100%);
   /* Body Copy */
   --fs-body-copy: 1.5rem;
+  --fs-labels: 1.125rem;
 }
 
 body {
@@ -26,14 +27,33 @@ body {
 }
 
 main {
+  border-radius: 2rem;
   background-color: var(--clr-white);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.input-elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 input[type="text"] {
   font: inherit;
+  text-align: right;
   color: var(--clr-very-dark-cyan);
   background-color: var(--clr-very-light-grayish-cyan);
   border: none;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
 }
 
 .choose-tip {
@@ -50,17 +70,40 @@ input[type="text"] {
 }
 
 .results {
+  border-radius: 1rem;
   background-color: var(--clr-very-dark-cyan);
   color: var(--clr-very-light-grayish-cyan);
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.display-result {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+label {
+  font-size: var(--fs-labels);
+}
+
+.label {
+  font-size: var(--fs-labels);
+}
+
+.sublabel {
+  font-size: calc(var(--fs-body-copy) * 0.6);
+  color: var(--clr-grayish-cyan);
 }
 
 .results .result {
+  font-size: calc(var(--fs-body-copy) * 1.5);
   color: var(--clr-strong-cyan);
+  text-align: right;
 }
 
 .attribution {
-  position: absolute;
-  bottom: 1rem;
   font-size: 11px;
   text-align: center;
 }

@@ -24,11 +24,11 @@
     <img src="images/logo.svg" alt="" class="logo" />
     <main>
       <div class="input-elements">
-        <section>
+        <section class="input-section">
           <label for="bill">Bill</label>
           <input type="text" name="bill" id="bill" />
         </section>
-        <section>
+        <section class="input-section">
           <label for="tip-percentage">Select Tip %</label>
           <ul class="choose-tip">
             <li>
@@ -65,18 +65,24 @@
             </li>
           </ul>
         </section>
-        <section>
+        <section class="input-section">
           <label for="party-size">Number of People</label>
           <input type="text" name="party-size" id="party-size" />
         </section>
       </div>
       <div class="results">
         <section class="display-result">
-          <div class="label"><strong>Tip Amount</strong></div>
+          <div class="label">
+            <strong> Tip Amount</strong><br />
+            <span class="sublabel">/ person</span>
+          </div>
           <div class="result" id="tip-per-person">$0.00</div>
         </section>
         <section class="display-result">
-          <div class="label"><strong>Total</strong></div>
+          <div class="label">
+            <strong>Total</strong><br />
+            <span class="sublabel">/ person</span>
+          </div>
           <div class="result" id="total-per-person">$0.00</div>
         </section>
         <button class="reset-button">Reset</button>
