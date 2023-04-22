@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="icon"
@@ -19,73 +20,96 @@
     />
     <script src="main.js" defer></script>
   </head>
-
   <body>
     <img src="images/logo.svg" alt="" class="logo" />
     <main>
       <div class="input-elements">
-        <section class="input-section">
-          <label for="bill">Bill</label>
-          <input type="text" name="bill" id="bill" />
-        </section>
-        <section class="input-section">
-          <label for="tip-percentage">Select Tip %</label>
-          <ul class="choose-tip">
+        <div class="bill">
+          <div class="fs-medium">Bill</div>
+          <label for="bill-input" class="visually-hidden">Bill</label>
+          <input type="text" name="bill" id="bill-input" />
+        </div>
+        <div class="tip">
+          <div class="fs-medium">Select Tip %</div>
+          <ul>
             <li>
-              <input type="radio" name="tip" id="tip5" class="tip-button" />
-              <label for="tip5" class="tip-label">5%</label>
+              <label for="tip5" class="visually-hidden">5%</label>
+              <input
+                type="radio"
+                name="tip"
+                id="tip5"
+                data-percentage="5"
+                class="button"
+              />
             </li>
             <li>
-              <input type="radio" name="tip" id="tip10" class="tip-button" />
-              <label for="tip10" class="tip-label">10%</label>
+              <label for="tip10" class="visually-hidden">10%</label>
+              <input
+                type="radio"
+                name="tip"
+                id="tip10"
+                data-percentage="10"
+                class="button"
+              />
             </li>
             <li>
+              <label for="tip15" class="visually-hidden">15%</label>
               <input
                 type="radio"
                 name="tip"
                 id="tip15"
-                class="tip-button"
-                checked
+                data-percentage="15"
+                class="button"
               />
-              <label for="tip15" class="tip-label">15%</label>
             </li>
             <li>
-              <input type="radio" name="tip" id="tip25" class="tip-button" />
-              <label for="tip25" class="tip-label">25%</label>
+              <label for="tip25" class="visually-hidden">25%</label>
+              <input
+                type="radio"
+                name="tip"
+                id="tip25"
+                data-percentage="25"
+                class="button"
+              />
             </li>
             <li>
-              <input type="radio" name="tip" id="tip50" class="tip-button" />
-              <label for="tip50" class="tip-label">50%</label>
+              <label for="tip50" class="visually-hidden">50%</label>
+              <input
+                type="radio"
+                name="tip"
+                id="tip50"
+                data-percentage="50"
+                class="button"
+              />
             </li>
             <li>
-              <input type="radio" name="tip" id="custom" class="tip-button" />
-              <label for="custom-tip">
-                <!-- <input type="text" name="custom-tip" id="custom-tip" /> -->
-              </label>
+              <label for="custom-tip" class="visually-hidden">Custom</label>
+              <input type="text" name="tip" id="custom-tip" />
             </li>
           </ul>
-        </section>
-        <section class="input-section">
-          <label for="party-size">Number of People</label>
-          <input type="text" name="party-size" id="party-size" />
-        </section>
+        </div>
+        <div class="party-size">
+          <div class="fs-medium">Number of People</div>
+          <label for="number-of-people" class="visually-hidden"
+            >Number of People</label
+          >
+          <input type="text" name="number-of-people" id="party-input" />
+        </div>
       </div>
       <div class="results">
-        <section class="display-result">
-          <div class="label">
-            <strong> Tip Amount</strong><br />
-            <span class="sublabel">/ person</span>
-          </div>
-          <div class="result" id="tip-per-person">$0.00</div>
-        </section>
-        <section class="display-result">
-          <div class="label">
-            <strong>Total</strong><br />
-            <span class="sublabel">/ person</span>
-          </div>
-          <div class="result" id="total-per-person">$0.00</div>
-        </section>
-        <button class="reset-button">Reset</button>
+        <div class="tip-label">
+          <span class="fs-medium fc-very-light">Tip Amount</span>
+          <br />
+          <span class="fs-small">/ person</span>
+        </div>
+        <div class="output fs-xlarge fc-accent" id="tip-amount">$0.00</div>
+        <div class="total-label">
+          <span class="fs-medium fc-very-light">Total</span>
+          <br />
+          <span class="fs-small">/ person</span>
+        </div>
+        <div class="output fs-xlarge fc-accent" id="total-amount">$0.00</div>
+        <button class="button reset fs-medium">Reset</button>
       </div>
     </main>
     <footer class="attribution">

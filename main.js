@@ -1,20 +1,16 @@
-const fixedTips = [5, 10, 15, 25, 50];
+const radioButtons = Array.from(document.querySelectorAll("[type='radio']"));
 let percentageMap = new Map();
-fixedTips.forEach((percentage) => {
-  var id = `#tip${percentage}`;
-  percentageMap.set(document.querySelector(`${id}`), percentage);
+radioButtons.forEach((button) => {
+  let percentage = Number(button.dataset.percentage);
+  percentageMap.set(button, percentage);
 });
 
-const bill = document.querySelector("#bill");
-const partySize = document.querySelector("#party-size");
-const customPercentage = document.querySelector("#custom-tip");
-const inputElements = [bill, partySize, customPercentage];
-const radioButtons = Array.from(document.querySelectorAll(".tip-button"));
-// should only validate customPercentage if customTip is checked
-const customTip = document.querySelector("#custom");
+const bill = document.querySelector("#bill-input");
+const partySize = document.querySelector("#party-input");
+const inputElements = [bill, partySize];
 
-const tip = document.querySelector("#tip-per-person");
-const cost = document.querySelector("#total-per-person");
+const tip = document.querySelector("#tip-amount");
+const cost = document.querySelector("#total-amount");
 
 // directly update the entries
 function updateCosts(percentage) {
@@ -30,16 +26,16 @@ function updateCosts(percentage) {
 function inputValidates() {
   let costRegex = /^(0|[1-9]\d*)(.\d{2})?$/;
   let naturalNumberRegex = /^[1-9]\d*$/;
-  // if custom tip is selected, we also need to validate the tip percentage
-  let tipRegex = /^\d+$/;
-  if (customTip.checked) {
-    let p = customPercentage.value;
-    if (tipRegex.test(p)) {
-      percentageMap.set(customTip, Number(p));
-    } else {
-      return false;
-    }
-  }
+  // // if custom tip is selected, we also need to validate the tip percentage
+  // let tipRegex = /^\d+$/;
+  // if (customTip.checked) {
+  //   let p = customPercentage.value;
+  //   if (tipRegex.test(p)) {
+  //     percentageMap.set(customTip, Number(p));
+  //   } else {
+  //     return false;
+  //   }
+  // }
   return costRegex.test(bill.value) && naturalNumberRegex.test(partySize.value);
 }
 
@@ -74,7 +70,6 @@ function resetAll() {
   radioButtons.forEach((button) => {
     button.checked = false;
   });
-  document.querySelector("#tip15").checked = true;
 }
 
-document.querySelector(".reset-button").addEventListener("click", resetAll);
+document.querySelector(".reset").addEventListener("click", resetAll);
