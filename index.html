@@ -24,13 +24,13 @@
     <img src="images/logo.svg" alt="" class="logo" />
     <main>
       <div class="input-elements">
-        <div class="bill">
+        <div class="input-label">
           <div class="fs-medium">Bill</div>
           <label for="bill-input" class="visually-hidden">Bill</label>
-          <input type="text" name="bill" id="bill-input" />
+          <input type="text" placeholder="0" name="bill" id="bill-input" />
         </div>
         <div class="tip">
-          <div class="fs-medium">Select Tip %</div>
+          <div class="input-label fs-medium">Select Tip %</div>
           <ul>
             <li>
               <label for="tip5" class="visually-hidden">5%</label>
@@ -84,32 +84,42 @@
             </li>
             <li>
               <label for="custom-tip" class="visually-hidden">Custom</label>
-              <input type="text" name="tip" id="custom-tip" />
+              <input
+                type="text"
+                placeholder="Custom"
+                name="tip"
+                id="custom-tip"
+              />
             </li>
           </ul>
         </div>
-        <div class="party-size">
+        <div class="input-label">
           <div class="fs-medium">Number of People</div>
           <label for="number-of-people" class="visually-hidden"
             >Number of People</label
           >
-          <input type="text" name="number-of-people" id="party-input" />
+          <input
+            type="text"
+            placeholder="0"
+            name="number-of-people"
+            id="party-input"
+          />
         </div>
       </div>
       <div class="results">
-        <div class="tip-label">
+        <div class="result-label">
           <span class="fs-medium fc-very-light">Tip Amount</span>
           <br />
           <span class="fs-small">/ person</span>
         </div>
         <div class="output fs-xlarge fc-accent" id="tip-amount">$0.00</div>
-        <div class="total-label">
+        <div class="result-label">
           <span class="fs-medium fc-very-light">Total</span>
           <br />
           <span class="fs-small">/ person</span>
         </div>
         <div class="output fs-xlarge fc-accent" id="total-amount">$0.00</div>
-        <button class="button reset fs-medium">Reset</button>
+        <button class="reset fs-medium" disabled>Reset</button>
       </div>
     </main>
     <footer class="attribution">

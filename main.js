@@ -7,6 +7,7 @@ radioButtons.forEach((button) => {
 
 const bill = document.querySelector("#bill-input");
 const partySize = document.querySelector("#party-input");
+const customTip = document.querySelector("#custom-tip");
 const inputElements = [bill, partySize];
 
 const tip = document.querySelector("#tip-amount");
@@ -26,16 +27,16 @@ function updateCosts(percentage) {
 function inputValidates() {
   let costRegex = /^(0|[1-9]\d*)(.\d{2})?$/;
   let naturalNumberRegex = /^[1-9]\d*$/;
-  // // if custom tip is selected, we also need to validate the tip percentage
-  // let tipRegex = /^\d+$/;
-  // if (customTip.checked) {
-  //   let p = customPercentage.value;
-  //   if (tipRegex.test(p)) {
-  //     percentageMap.set(customTip, Number(p));
-  //   } else {
-  //     return false;
-  //   }
-  // }
+  // if custom tip is selected, we also need to validate the tip percentage
+  let tipRegex = /^\d+$/;
+  if (customTip.focus) {
+    let p = customTip.value;
+    if (tipRegex.test(p)) {
+      percentageMap.set(customTip, Number(p));
+    } else {
+      return false;
+    }
+  }
   return costRegex.test(bill.value) && naturalNumberRegex.test(partySize.value);
 }
 
@@ -44,12 +45,15 @@ function resetResults() {
   cost.textContent = `$0.00`;
 }
 
+var activeButton = null;
+
 function attemptUpdate() {
   if (inputValidates()) {
-    let activeButton = radioButtons.find((button) => button.checked);
+    document.querySelector(".reset").disabled = false;
     let p = percentageMap.get(activeButton);
     updateCosts(p);
   } else {
+    document.querySelector(".reset").disabled = true;
     resetResults();
   }
 }
@@ -58,18 +62,35 @@ inputElements.forEach((element) => {
   element.addEventListener("change", attemptUpdate);
 });
 
+function customTipEvent() {
+  activeButton = customTip;
+  radioButtons.forEach((button) => {
+    button.checked = false;
+  });
+  attemptUpdate();
+}
+
+customTip.addEventListener("change", customTipEvent);
+customTip.addEventListener("focus", customTipEvent);
+
 radioButtons.forEach((button) => {
-  button.addEventListener("click", attemptUpdate);
+  button.addEventListener("click", () => {
+    activeButton = button;
+    attemptUpdate();
+  });
 });
 
 function resetAll() {
+  document.querySelector(".reset").disabled = true;
   resetResults();
   inputElements.forEach((element) => {
     element.value = "";
   });
+  customTip.value = "";
   radioButtons.forEach((button) => {
     button.checked = false;
   });
+  activeButton = null;
 }
 
 document.querySelector(".reset").addEventListener("click", resetAll);
