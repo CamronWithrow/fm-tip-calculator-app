@@ -1,17 +1,22 @@
+// User-side elements
+const bill = document.querySelector("#bill-input");
 const radioButtons = Array.from(document.querySelectorAll("[type='radio']"));
+const customTip = document.querySelector("#custom-tip");
+const partySize = document.querySelector("#party-input");
+const inputElements = [bill, partySize];
+const reset = document.querySelector(".reset");
+
+// Output elements
+const tip = document.querySelector("#tip-amount");
+const cost = document.querySelector("#total-amount");
+
+// Helper objects
 let percentageMap = new Map();
 radioButtons.forEach((button) => {
   let percentage = Number(button.dataset.percentage);
   percentageMap.set(button, percentage);
 });
-
-const bill = document.querySelector("#bill-input");
-const partySize = document.querySelector("#party-input");
-const customTip = document.querySelector("#custom-tip");
-const inputElements = [bill, partySize];
-
-const tip = document.querySelector("#tip-amount");
-const cost = document.querySelector("#total-amount");
+var activeButton = null;
 
 // directly update the entries
 function updateCosts(percentage) {
@@ -28,9 +33,9 @@ function inputValidates() {
   let costRegex = /^(0|[1-9]\d*)(.\d{2})?$/;
   let naturalNumberRegex = /^[1-9]\d*$/;
   // if custom tip is selected, we also need to validate the tip percentage
-  let tipRegex = /^\d+$/;
-  if (customTip.focus) {
+  if (activeButton === customTip) {
     let p = customTip.value;
+    let tipRegex = /^\d+$/;
     if (tipRegex.test(p)) {
       percentageMap.set(customTip, Number(p));
     } else {
@@ -39,13 +44,6 @@ function inputValidates() {
   }
   return costRegex.test(bill.value) && naturalNumberRegex.test(partySize.value);
 }
-
-function resetResults() {
-  tip.textContent = `$0.00`;
-  cost.textContent = `$0.00`;
-}
-
-var activeButton = null;
 
 function attemptUpdate() {
   if (inputValidates()) {
@@ -58,30 +56,21 @@ function attemptUpdate() {
   }
 }
 
-inputElements.forEach((element) => {
-  element.addEventListener("change", attemptUpdate);
-});
-
 function customTipEvent() {
   activeButton = customTip;
+  customTip.classList.add("active");
   radioButtons.forEach((button) => {
     button.checked = false;
   });
   attemptUpdate();
 }
 
-customTip.addEventListener("change", customTipEvent);
-customTip.addEventListener("focus", customTipEvent);
-
-radioButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    activeButton = button;
-    attemptUpdate();
-  });
-});
+function resetResults() {
+  tip.textContent = `$0.00`;
+  cost.textContent = `$0.00`;
+}
 
 function resetAll() {
-  document.querySelector(".reset").disabled = true;
   resetResults();
   inputElements.forEach((element) => {
     element.value = "";
@@ -91,6 +80,19 @@ function resetAll() {
     button.checked = false;
   });
   activeButton = null;
+  reset.disabled = true;
 }
 
-document.querySelector(".reset").addEventListener("click", resetAll);
+inputElements.forEach((element) => {
+  element.addEventListener("change", attemptUpdate);
+});
+customTip.addEventListener("change", customTipEvent);
+customTip.addEventListener("focus", customTipEvent);
+radioButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    activeButton = button;
+    customTip.classList.remove("active");
+    attemptUpdate();
+  });
+});
+reset.addEventListener("click", resetAll);

@@ -56,6 +56,11 @@ body {
   cursor: pointer;
 }
 
+[type="text"]:focus {
+  outline: none !important;
+  border: 2px solid var(--clr-strong-cyan);
+}
+
 .logo {
   margin: 3rem 0;
 }
@@ -200,6 +205,10 @@ ul {
 
 .fc-accent {
   color: var(--clr-strong-cyan);
+}
+
+.active {
+  border: 2px solid var(--clr-strong-cyan);
 }
 
 .attribution {
