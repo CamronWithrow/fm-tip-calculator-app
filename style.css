@@ -45,6 +45,7 @@ body {
 [type="text"] {
   background-color: var(--clr-very-light-grayish-cyan);
   border: none;
+  border-radius: 0.25rem;
   width: 100%;
   font: inherit;
   color: var(--clr-very-dark-cyan);
@@ -58,7 +59,7 @@ body {
 
 [type="text"]:focus {
   outline: none !important;
-  border: 2px solid var(--clr-strong-cyan);
+  border: 1px solid var(--clr-strong-cyan);
 }
 
 .logo {
@@ -179,12 +180,26 @@ ul {
   background-color: var(--clr-dark-grayish-cyan);
 }
 
+.party-size {
+  display: flex;
+}
+
+.invalid-input {
+  border: 1px solid orangered;
+}
+
+.invalid::after {
+  content: "Can't be zero";
+  color: orangered;
+  margin-left: auto;
+}
+
 .result-label {
   line-height: 1.25rem;
 }
 
 .fs-medium {
-  font-size: calc(var(--fs-body-copy) * 0.75);
+  font-size: calc(var(--fs-body-copy) * 0.6);
 }
 
 .fs-small {
@@ -208,7 +223,7 @@ ul {
 }
 
 .active {
-  border: 2px solid var(--clr-strong-cyan);
+  border: 1px solid var(--clr-strong-cyan);
 }
 
 .attribution {

@@ -46,6 +46,14 @@ function inputValidates() {
 }
 
 function attemptUpdate() {
+  if (partySize.value === "0") {
+    document.querySelector(".party-size").classList.add("invalid");
+    partySize.classList.add("invalid-input");
+    return;
+  } else {
+    document.querySelector(".party-size").classList.remove("invalid");
+    partySize.classList.remove("invalid-input");
+  }
   if (inputValidates()) {
     document.querySelector(".reset").disabled = false;
     let p = percentageMap.get(activeButton);
